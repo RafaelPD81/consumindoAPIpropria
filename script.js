@@ -142,6 +142,7 @@ const trocarCores = (evento) => {
     } else if (estado === 'blackstar') {
         document.head.querySelector('#css').setAttribute('href', 'predo.css');
     }
+    
 }
 
 const selectMode = document.querySelector('#select-tema');

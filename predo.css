@@ -48,9 +48,7 @@ body::before {
     background-repeat: no-repeat;
     z-index: 100;
     filter: drop-shadow(5px 5px 0px #ff00ff);
-    
 }
-
 
 body::after {
     content: "★";
@@ -132,53 +130,12 @@ ul {
     padding: 20px;
 }
 
-button, 
-input[type="submit"], 
-input[type="button"],
-select {
-    background: #000 !important; 
-    color: #00ffff !important;    
-    border: 3px solid #ff00ff !important; 
-    padding: 12px 20px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
-    cursor: pointer;
-    box-shadow: 6px 6px 0px #ff00ff; 
-    transition: 0.1s;
-    outline: none;
-    text-transform: uppercase;
-}
-
-button:hover, 
-input[type="submit"]:hover, 
-input[type="button"]:hover,
-select:hover {
-    background: #ff00ff !important; 
-    color: #000 !important;         
-    box-shadow: 3px 3px 0px #00ffff; 
-    transform: translate(3px, 3px);  
-}
-
-select {
-    background: #000;
-    color: #00ffff;
-    border: 2px solid #ff00ff;
-    padding: 5px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0px #ff00ff;
-    outline: none;
-}
-
 li {
-    background: #000 !important;
-    border: 3px solid #ff00ff;
+    background: rgba(0, 255, 255, 0.1);
+    border-bottom: 3px solid #ff00ff;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #00ffff;
-    box-shadow: 10px 10px 0px rgba(255, 0, 255, 0.8);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 ::-webkit-scrollbar { width: 15px; }

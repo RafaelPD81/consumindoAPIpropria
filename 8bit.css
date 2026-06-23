@@ -1,40 +1,33 @@
-header {
-  background-image: url('sakura_header.png');
-  background-size: cover;
-  background-position: center;
-  height: 110px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 4px solid #ffb7c5;
-  box-shadow: 0 4px 0 #ff69b4;
-}
-
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: 'Press Start 2P', cursive;
   background-color: #eb19b6;
   color: #fffefe;
-  background-image: url("SakuraField.webp");
+  background-image: url("img/SakuraField.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-
+  background-size: 100% 100%;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,  
+     1px  1px 0 #000;
 }
 
+ul, #feedback {
+  backdrop-filter: blur(10px);
+  width: 30%;
+}
 
 ul {
   list-style-type: circle;
-  list-style-image: url("Flor.png")
+  list-style-image: url("img/Flor.png");
 }
 
-footer {
-  background-image: url('sakura_footer.png');
-  background-size: cover;
-  background-position: center;
-  height: 120px;
-  border-top: 4px solid #ffb7c5;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 20px;
+#titulo {
+  margin-top: 8%;
 }
+

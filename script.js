@@ -12,6 +12,7 @@ const enviarAluno = async () => {
     const nome = document.querySelector("#input-nome").value.trim();
     const idade = document.querySelector("#input-idade").value.trim();
     const email = document.querySelector("#input-email").value.trim();
+    const telefone = document.querySelector("#input-telefone").value.trim();
     const feedback = document.querySelector('#feedback');
 
     if (!nome || !email || !idade) {
@@ -34,6 +35,8 @@ const enviarAluno = async () => {
         document.querySelector("#input-nome").value = '';
         document.querySelector("#input-idade").value = '';
         document.querySelector("#input-email").value = '';
+        document.querySelector("#input-telefone").value = '';
+        
 
         limparAlunos();
         await renderAlunos();

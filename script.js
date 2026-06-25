@@ -2,7 +2,12 @@ const buscarAlunos = async () => {
     try {
         let resposta = await fetch('http://localhost:3000/users');
         resposta = await resposta.json();
-        return resposta;
+
+        if (typeof(resposta) !== 'object') {
+            return [];
+        } else {
+            return resposta;
+        }
     } catch (e) {
         console.error(e);
     }
@@ -15,8 +20,8 @@ const enviarAluno = async () => {
     const telefone = document.querySelector("#input-telefone").value.trim();
     const feedback = document.querySelector('#feedback');
 
-    if (!nome || !email || !idade) {
-        feedback.textContent = "⚠️ ALERTA: Nome, Email e Telefone são obrigatórios para o registro!";
+    if (!nome || !email || !idade || !email) {
+        feedback.textContent = "⚠️ ALERTA: Nome, Idade, Telefone e Email são obrigatórios para o registro!";
         style.color = "var(--detalhe-alerta)";
     }
 
@@ -130,22 +135,28 @@ const atualizarAluno = async (evento) => {
     const email = document.querySelector('#input-editar-email').value;
     const feedback = document.querySelector('#feedback');
 
-    try {
-        const options = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user: { nome, idade, telefone, email} })
+    if (!nome || !email || !idade || !email) {
+        feedback.textContent = "⚠️ ALERTA: Nome, Idade, Telefone e Email são obrigatórios para o registro!";
+        style.color = "var(--detalhe-alerta)";
+    } else {
+        try {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user: { nome, idade, telefone, email} })
+            }
+            let resposta = await fetch(`http://localhost:3000/users/${evento.target.dataset.id}`, options);
+            resposta = await resposta.json();
+            feedback.textContent = resposta;
+            limparAlunos();
+            await renderAlunos();
+        } catch (e) {
+            console.error(e);
         }
-        let resposta = await fetch(`http://localhost:3000/users/${evento.target.dataset.id}`, options);
-        resposta = await resposta.json();
-        feedback.textContent = resposta;
-        limparAlunos();
-        await renderAlunos();
-    } catch (e) {
-        console.error(e);
     }
+
 }
 
 const limparAlunos = () => {

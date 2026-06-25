@@ -16,7 +16,7 @@ const enviarAluno = async () => {
     const feedback = document.querySelector('#feedback');
 
     if (!nome || !email || !idade) {
-        feedback. textContent = "⚠️ ALERTA: Nome, Email e Telefone são obrigatórios para o registro!";
+        feedback.textContent = "⚠️ ALERTA: Nome, Email e Telefone são obrigatórios para o registro!";
         style.color = "var(--detalhe-alerta)";
     }
 
@@ -26,7 +26,7 @@ const enviarAluno = async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({user: { nome, idade,email}})
+            body: JSON.stringify({ user: { nome, idade, email } })
         }
         let resposta = await fetch('http://localhost:3000/users', options);
         resposta = await resposta.json();
@@ -62,14 +62,14 @@ const removerAluno = async (evento) => {
 };
 
 const renderAlunos = async () => {
-const alunos = await buscarAlunos();
+    const alunos = await buscarAlunos();
 
-const elemUl = document.querySelector('#lista-alunos');
+    const elemUl = document.querySelector('#lista-alunos');
 
     for (let aluno of alunos) {
         const elemLi = document.createElement('li');
 
-        elemLi.innerHTML = `Nome: ${aluno.nome} - Idade: ${aluno.idade} -Tel: ${aluno.telefone}`;
+        elemLi.innerHTML = `Nome: ${aluno.nome} - Idade: ${aluno.idade} -Tel: ${aluno.telefone} - Email: ${aluno.email}`;
         const btRemover = document.createElement('input');
         btRemover.type = 'button';
         btRemover.classList.add('botoes-remover');
@@ -106,6 +106,11 @@ const editarAluno = async (evento) => {
     inputTelefone.placeholder = 'Telefone';
     inputTelefone.id = 'input-editar-telefone';
 
+    const inputEmail = document.createElement('input');
+    inputEmail.type = 'text';
+    inputEmail.placeholder = 'Email';
+    inputEmail.id = 'input-editar-email';
+
     const btAtualizar = document.createElement('button');
     btAtualizar.innerText = '✔️';
     btAtualizar.dataset.id = evento.target.dataset.id;
@@ -114,6 +119,7 @@ const editarAluno = async (evento) => {
     evento.target.parentNode.appendChild(inputNome);
     evento.target.parentNode.appendChild(inputIdade);
     evento.target.parentNode.appendChild(inputTelefone);
+    evento.target.parentNode.appendChild(inputEmail);
     evento.target.parentNode.appendChild(btAtualizar);
 }
 
@@ -121,6 +127,7 @@ const atualizarAluno = async (evento) => {
     const nome = document.querySelector('#input-editar-nome').value;
     const idade = document.querySelector('#input-editar-idade').value;
     const telefone = document.querySelector('#input-editar-telefone').value;
+    const email = document.querySelector('#input-editar-email').value;
     const feedback = document.querySelector('#feedback');
 
     try {
@@ -129,7 +136,7 @@ const atualizarAluno = async (evento) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({user: { nome, idade, telefone}})
+            body: JSON.stringify({ user: { nome, idade, telefone, email} })
         }
         let resposta = await fetch(`http://localhost:3000/users/${evento.target.dataset.id}`, options);
         resposta = await resposta.json();
@@ -151,7 +158,7 @@ const limparAlunos = () => {
 
 const trocarCores = (evento) => {
     const estado = evento.target.value;
-    
+
     if (estado === 'claro') {
         document.head.querySelector('#css').setAttribute('href', 'light.css');
     } else if (estado === 'escuro') {
@@ -164,7 +171,7 @@ const trocarCores = (evento) => {
         document.head.querySelector('#css').setAttribute('href', 'predo.css');
     } else if (estado === '8bit') {
         document.head.querySelector('#css').setAttribute('href', '8bit.css');
-    }  
+    }
 }
 
 const selectMode = document.querySelector('#select-tema');
